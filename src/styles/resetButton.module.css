@@ -1,10 +1,14 @@
 .reset-button {
   background-color: #38609b;
-  border-radius: 10px;
   color: #fff;
   cursor: pointer;
   border: 1px solid #38609b;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 18px;
 }
 
 .reset-button:active {

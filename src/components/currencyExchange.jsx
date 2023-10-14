@@ -4,7 +4,7 @@ import styles from '@/styles/currencyExchange.module.css';
 import SwapButton from './swapButton';
 import ResetButton from './resetButton';
 
-const CurrencyExchange = () => {
+const CurrencyExchange = ({ currenciesList }) => {
     return (
         <div className={`${styles.wrapper}`}>
             <h1 className={`${styles.header}`}>Money Exchange</h1>
@@ -12,10 +12,10 @@ const CurrencyExchange = () => {
                 <section className={`${styles.section}`}>
                     <div className={`${styles.form}`}>
                         <CurrencyInput />
-                        <Dropdown label="From" />
+                        <Dropdown currenciesList={currenciesList} label="From" />
                         <SwapButton />
 
-                        <Dropdown label="To" />
+                        <Dropdown currenciesList={currenciesList} label="To" />
                     </div>
 
                     <ResetButton />

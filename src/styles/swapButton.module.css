@@ -14,3 +14,9 @@
 .swap-button:active {
   border-color: var(--blue);
 }
+
+@media only screen and (max-width: 820px) {
+  .swap-button {
+    align-self: center;
+  }
+}

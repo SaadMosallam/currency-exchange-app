@@ -4,7 +4,8 @@ import CurrencyExchange from '@/components/currencyExchange'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ currenciesList, error }) {
+
   return (
     <>
       <Head>
@@ -14,10 +15,41 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        {
+          error ? <p>Cannot retrieve currencies list</p> : null
+        }
 
-        <CurrencyExchange />
-
+        {
+          currenciesList ? <CurrencyExchange currenciesList={currenciesList} /> : null
+        }
       </main>
     </>
   )
+};
+
+export async function getStaticProps() {
+  const url = 'https://currency-exchange.p.rapidapi.com/listquotes';
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '9af8210d71msh0adc58de1e15513p12c61ajsn6b967a6e4108',
+      'X-RapidAPI-Host': 'currency-exchange.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    return {
+      props: {
+        currenciesList: result
+      }
+    }
+  } catch (error) {
+    return {
+      props: {
+        error
+      }
+    };
+  }
 }
