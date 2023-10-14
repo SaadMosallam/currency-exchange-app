@@ -7,6 +7,14 @@
   box-shadow: inset 0 0 0 1000px rgba(59, 97, 132, 0.7);
 }
 
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .header {
   text-align: center;
   font-weight: bold;
@@ -27,5 +35,4 @@
   background-color: #fff;
   padding: 50px;
   border-radius: 20px;
-  width: 70%;
 }

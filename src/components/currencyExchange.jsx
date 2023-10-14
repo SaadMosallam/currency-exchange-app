@@ -10,10 +10,14 @@ const CurrencyExchange = () => {
             <h1 className={`${styles.header}`}>Money Exchange</h1>
             <div className={`${styles['section-container']}`} >
                 <section className={`${styles.section}`}>
-                    <CurrencyInput />
-                    <Dropdown id='1' />
-                    <Dropdown id='2' />
-                    <SwapButton />
+                    <div className={`${styles.form}`}>
+                        <CurrencyInput />
+                        <Dropdown label="From" />
+                        <SwapButton />
+
+                        <Dropdown label="To" />
+                    </div>
+
                     <ResetButton />
                 </section>
             </div>

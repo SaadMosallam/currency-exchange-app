@@ -21,7 +21,7 @@ const CurrencyInput = () => {
     }
 
     return (
-        <>
+        <div className={`${styles.wrapper}`}>
             <label className={`${styles.currencyLabel}`} for="currency-input">Amount</label>
             <input
                 type="text"
@@ -32,7 +32,7 @@ const CurrencyInput = () => {
                 onChange={handleChange}
                 onBlur={handleOnBlur}
             />
-        </>
+        </div>
 
     );
 };

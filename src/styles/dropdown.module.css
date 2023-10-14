@@ -1,11 +1,28 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.wrapper > label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 .menu-button {
   cursor: pointer;
+  height: 40px;
   background: #fff;
-  padding: 8px 15px;
+  padding: 8px;
   position: relative;
-  width: 100%;
   border: 1px solid var(--grey);
   border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menu-button.active {
@@ -25,6 +42,7 @@
   left: 0;
   list-style: none;
   animation: slide 0.3s ease-in-out;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .menu-item {
