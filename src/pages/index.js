@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import CurrencyInput from '@/components/currencyInput'
+import CurrencyExchange from '@/components/currencyExchange'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Money Exchange</h1>
 
-        <CurrencyInput />
+        <CurrencyExchange />
+
       </main>
     </>
   )
