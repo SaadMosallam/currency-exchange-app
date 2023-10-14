@@ -7,6 +7,25 @@
   box-shadow: inset 0 0 0 1000px rgba(59, 97, 132, 0.7);
 }
 
-.section {
+.header {
+  text-align: center;
+  font-weight: bold;
+  margin: 0px;
+  color: #fff;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.section-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  /* display: flex; */
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 20px;
+  width: 70%;
 }

@@ -1,0 +1,11 @@
+.reset-button {
+  background-color: #38609b;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #38609b;
+}
+
+.reset-button:active {
+  filter: opacity(70%);
+}

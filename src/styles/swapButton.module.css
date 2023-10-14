@@ -1,0 +1,14 @@
+.swap-button {
+  background-color: #fff;
+  border: 1px solid var(--grey);
+  border-radius: 50%;
+  padding: 7px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swap-button:active {
+  border-color: var(--blue);
+}
