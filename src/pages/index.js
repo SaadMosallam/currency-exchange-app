@@ -2,12 +2,11 @@ import Head from "next/head";
 import CurrencyExchange from "@/components/currencyExchange/CurrencyExchange";
 import { useDispatch } from "react-redux";
 import { setCurrenciesList } from "@/store/currencySlice";
-import { useRouter } from "next/router";
 import React from "react";
+import Error from "@/components/error/Error";
 
 export default function Home({ currenciesList, error }) {
   const dispatch = useDispatch();
-  const router = useRouter();
 
   if (currenciesList?.length) {
     dispatch(setCurrenciesList(currenciesList));
@@ -22,18 +21,7 @@ export default function Home({ currenciesList, error }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {error ? (
-          <div>
-            <p>Something went wrong, please try again later</p>
-            <button
-              onClick={() => {
-                router.reload();
-              }}
-            >
-              Reload
-            </button>
-          </div>
-        ) : null}
+        {error ? <Error /> : null}
         {currenciesList ? <CurrencyExchange /> : null}
       </main>
     </>
