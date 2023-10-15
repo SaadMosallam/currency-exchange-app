@@ -5,20 +5,20 @@ import SwapButton from '../swapButton/SwapButton';
 import ResetButton from '../resetButton/ResetButton';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeDropDown, getResult, setError, setResult } from '@/store/currencySlice';
+import { setIsDropdownOpen, getResult, setError, setResult } from '@/store/currencySlice';
 import Result from '../result/Result';
 import useDebounce from '@/util';
 
 const CurrencyExchange = () => {
     const dispatch = useDispatch();
     const selectedOption = useSelector(state => state.currency.value);
-    const [formattedAmount, setFormattedAmount] = useState('1.0');
-    const debouncedAmount = useDebounce(formattedAmount, 2000);
+    const amount = useSelector(state => state.currency.amount);
+    const debouncedAmount = useDebounce(amount, 2000);
 
     useEffect(() => {
         const handleClickAway = (e) => {
             if (!e.target.closest('[data-dropdown]')) {
-                dispatch(closeDropDown());
+                dispatch(setIsDropdownOpen(null));
             }
         }
         window.addEventListener('click', handleClickAway)
@@ -43,7 +43,7 @@ const CurrencyExchange = () => {
             <div className={`${styles['section-container']}`} >
                 <section className={`${styles.section}`}>
                     <div className={`${styles.form}`}>
-                        <CurrencyInput formattedAmount={formattedAmount} setFormattedAmount={setFormattedAmount} />
+                        <CurrencyInput />
                         <Dropdown id="from" />
                         <SwapButton />
                         <Dropdown id="to" />

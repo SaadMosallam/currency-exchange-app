@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getResult = createAsyncThunk('currency/fetchResult', async (args) => {
     const response = await fetchResult(args);
-    console.log('response', response)
     return response
 })
 
@@ -12,6 +11,7 @@ const initialState = {
         from: null,
         to: null,
     },
+    amount: '1.0',
     result: null,
     isDropdownOpen: null,
     error: null,
@@ -27,16 +27,16 @@ export const currencySlice = createSlice({
         setCurrenciesList: (state, action) => {
             state.currenciesList = action.payload;
         },
-        openDropDown: (state, action) => {
+        setIsDropdownOpen: (state, action) => {
             state.isDropdownOpen = action.payload
-        },
-        closeDropDown: (state) => {
-            state.isDropdownOpen = null
         },
         selectCurrency: (state, action) => {
             const { payload } = action;
             state.result = null;
             state.value[payload.id] = payload.value;
+        },
+        setAmount: (state, action) => {
+            state.amount = action.payload;
         },
         swapCurrencies: (state) => {
             const { from, to } = state.value;
@@ -69,6 +69,6 @@ export const currencySlice = createSlice({
     }
 })
 
-export const { openDropDown, closeDropDown, selectCurrency, swapCurrencies, setError, reset, setResult, setCurrenciesList } = currencySlice.actions
+export const { selectCurrency, setAmount, swapCurrencies, setError, reset, setResult, setCurrenciesList, setIsDropdownOpen } = currencySlice.actions
 
 export default currencySlice.reducer

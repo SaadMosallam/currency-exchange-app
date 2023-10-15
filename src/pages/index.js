@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ currenciesList, error }) {
   const dispatch = useDispatch();
-  if (currenciesList.length) dispatch(setCurrenciesList(currenciesList))
+  if (currenciesList?.length) dispatch(setCurrenciesList(currenciesList))
 
   return (
 
@@ -32,7 +32,7 @@ export default function Home({ currenciesList, error }) {
   )
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const url = 'https://currency-exchange.p.rapidapi.com/listquotes';
   const options = {
     method: 'GET',
@@ -57,4 +57,4 @@ export async function getStaticProps() {
       }
     };
   }
-}
+};

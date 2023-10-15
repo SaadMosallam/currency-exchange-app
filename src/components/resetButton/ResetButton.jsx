@@ -1,4 +1,4 @@
-import { reset } from '@/store/currencySlice';
+import { reset, setAmount } from '@/store/currencySlice';
 import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,6 +8,7 @@ const ResetButton = () => {
 
     const handleClick = () => {
         dispatch(reset());
+        dispatch(setAmount('1.0'));
     };
 
     let isDisplayed = true;
