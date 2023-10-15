@@ -1,14 +1,16 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import CurrencyExchange from '@/components/currencyExchange/CurrencyExchange'
-import { useDispatch } from 'react-redux'
-import { setCurrenciesList } from '@/store/currencySlice'
-
-const inter = Inter({ subsets: ['latin'] })
+import { useDispatch } from 'react-redux';
+import { setCurrenciesList } from '@/store/currencySlice';
+import { useRouter } from 'next/router';
 
 export default function Home({ currenciesList, error }) {
   const dispatch = useDispatch();
-  if (currenciesList?.length) dispatch(setCurrenciesList(currenciesList))
+  const router = useRouter();
+
+  if (currenciesList?.length) {
+    dispatch(setCurrenciesList(currenciesList));
+  }
 
   return (
 
@@ -20,7 +22,12 @@ export default function Home({ currenciesList, error }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {error ? <p>Cannot retrieve currencies list</p> : null}
+        {error ? <div>
+          <p>Something went wrong, please try again later</p>
+          <button onClick={() => {
+            router.reload();
+          }}>Reload</button>
+        </div> : null}
         {currenciesList ? <CurrencyExchange /> : null}
       </main>
     </>

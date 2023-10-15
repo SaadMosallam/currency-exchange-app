@@ -5,6 +5,15 @@ export const getOppositeLabel = (label) => {
     return 'from'
 }
 
+const ALLOWED_FRACTION_LENGTH = 1;
+
+export const valueFormatter = (value) => {
+    if (value === '') {
+        return null;
+    }
+    return parseFloat(value).toFixed(ALLOWED_FRACTION_LENGTH);
+}
+
 export default function useDebounce(value, delay = 500) {
     const [debouncedValue, setDebouncedValue] = useState(value);
     useEffect(() => {

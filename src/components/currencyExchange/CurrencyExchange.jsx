@@ -3,9 +3,9 @@ import Dropdown from '@/components/dropdown/Dropdown';
 import styles from './styles.module.css';
 import SwapButton from '../swapButton/SwapButton';
 import ResetButton from '../resetButton/ResetButton';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsDropdownOpen, getResult, setError, setResult } from '@/store/currencySlice';
+import { setIsDropdownOpen, getResult, } from '@/store/currencySlice';
 import Result from '../result/Result';
 import useDebounce from '@/util';
 

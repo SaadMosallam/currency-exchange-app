@@ -7,13 +7,8 @@ export const getResult = createAsyncThunk('currency/fetchResult', async (args, {
         const response = await fetchResult(args);
         return fulfillWithValue(response)
     } catch (error) {
-        if (!err.response) {
-            throw err
-        }
-
         return rejectWithValue(err.response.data)
     }
-
 })
 
 const initialState = {
@@ -22,6 +17,7 @@ const initialState = {
         to: null,
     },
     amount: '1.0',
+    formattedAmount: '1.0',
     result: null,
     isDropdownOpen: null,
     error: null,
@@ -46,15 +42,19 @@ export const currencySlice = createSlice({
             state.value[payload.id] = payload.value;
         },
         setAmount: (state, action) => {
+            state.result = null;
             state.amount = action.payload;
+        },
+        setFormattedAmount: (state, action) => {
+            state.formattedAmount = action.payload;
         },
         swapCurrencies: (state) => {
             const { from, to } = state.value;
+            state.result = null;
             state.value = {
                 from: to,
                 to: from,
             }
-            state.result = null;
         },
         setResult: (state, action) => {
             state.result = action.payload;
@@ -79,6 +79,16 @@ export const currencySlice = createSlice({
     }
 })
 
-export const { selectCurrency, setAmount, swapCurrencies, setError, reset, setResult, setCurrenciesList, setIsDropdownOpen } = currencySlice.actions
+export const {
+    selectCurrency,
+    setAmount,
+    swapCurrencies,
+    setError,
+    reset,
+    setResult,
+    setCurrenciesList,
+    setIsDropdownOpen,
+    setFormattedAmount
+} = currencySlice.actions
 
 export default currencySlice.reducer

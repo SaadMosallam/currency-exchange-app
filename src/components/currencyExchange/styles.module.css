@@ -33,7 +33,7 @@
   background-color: var(--white);
   padding: 50px;
   border-radius: 20px;
-  min-height: 265px;
+  min-height: 275px;
 }
 
 @media only screen and (max-width: 820px) {
@@ -42,6 +42,8 @@
   }
   .section {
     text-align: center;
+    min-width: 370px;
+    min-height: 500px;
   }
   .section-container {
     margin-left: 10px;
