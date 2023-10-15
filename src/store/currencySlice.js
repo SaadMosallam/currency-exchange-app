@@ -48,7 +48,6 @@ export const currencySlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { openDropDown, closeDropDown, selectCurrency, swapCurrencies, setError, reset, setResult, setCurrenciesList } = currencySlice.actions
 
 export default currencySlice.reducer

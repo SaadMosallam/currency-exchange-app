@@ -30,7 +30,6 @@ const CurrencyExchange = () => {
 
 
     useEffect(() => {
-        console.log('debouncedAmount', debouncedAmount)
         const { from, to } = selectedOption;
         const fetchResult = async ({ from, to, debouncedAmount }) => {
             const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${debouncedAmount}`;
@@ -47,9 +46,7 @@ const CurrencyExchange = () => {
                 const result = await response.text();
                 dispatch(setResult(result));
                 setError(null);
-                console.log(result);
             } catch (error) {
-                console.error(error);
                 setError(error);
             }
         };
