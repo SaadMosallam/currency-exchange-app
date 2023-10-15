@@ -3,6 +3,7 @@ import CurrencyExchange from "@/components/currencyExchange/CurrencyExchange";
 import { useDispatch } from "react-redux";
 import { setCurrenciesList } from "@/store/currencySlice";
 import { useRouter } from "next/router";
+import React from "react";
 
 export default function Home({ currenciesList, error }) {
   const dispatch = useDispatch();

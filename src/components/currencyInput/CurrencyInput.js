@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAmount, setFormattedAmount } from "@/store/currencySlice";
 import { useState, useEffect } from "react";
 import { valueFormatter } from "@/util";
+import React from "react";
 
 const CurrencyInput = ({}) => {
   const formattedAmount = useSelector(
@@ -29,6 +30,7 @@ const CurrencyInput = ({}) => {
         Amount
       </label>
       <input
+        data-testid="currency-input"
         placeholder="0.0"
         type="text"
         name="currency-input"

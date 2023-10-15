@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { swapCurrencies } from "@/store/currencySlice";
+import React from "react";
 
 const SwapButton = () => {
   const dispatch = useDispatch();

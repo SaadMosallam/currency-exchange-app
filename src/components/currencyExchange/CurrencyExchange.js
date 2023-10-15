@@ -1,3 +1,4 @@
+import React from "react";
 import CurrencyInput from "@/components/currencyInput/CurrencyInput";
 import Dropdown from "@/components/dropdown/Dropdown";
 import styles from "./styles.module.css";

@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
 import { useSelector } from "react-redux";
+import React from "react";
 
 function Result({ debouncedAmount }) {
   const error = useSelector((state) => state.currency.error);

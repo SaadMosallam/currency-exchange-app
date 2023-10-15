@@ -4,6 +4,7 @@ import downSvg from "@/assets/images/arrowDown.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDropdownOpen, selectCurrency } from "@/store/currencySlice";
 import { getOppositeLabel } from "@/util";
+import React from "react";
 
 const PLACEHOLDER = "Currency";
 
@@ -51,7 +52,7 @@ const Dropdown = ({ id }) => {
                     ? styles.disabled
                     : null
                 }`}
-                onClick={(e) => handleSelectOption(currency, e)}
+                onClick={(e) => handleSelectOption(e, currency)}
               >
                 {currency}
               </li>
