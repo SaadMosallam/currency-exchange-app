@@ -2,6 +2,9 @@
   --grey: #cccccc;
   --white: #ffffff;
   --blue: #38609b;
+  --light-grey: #dddddd;
+  --dark-grey: #333333;
+  --darker-grey: #222222;
 }
 
 * {
