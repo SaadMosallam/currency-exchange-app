@@ -3,15 +3,17 @@ import Dropdown from '@/components/dropdown/Dropdown';
 import styles from './styles.module.css';
 import SwapButton from '../swapButton/SwapButton';
 import ResetButton from '../resetButton/ResetButton';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDropDown, setError, setResult } from '@/store/currencySlice';
 import Result from '../result/Result';
+import useDebounce from '@/util';
 
 const CurrencyExchange = () => {
     const dispatch = useDispatch();
     const selectedOption = useSelector(state => state.currency.value);
-    const amount = useSelector(state => state.currency.amount);
+    const [formattedAmount, setFormattedAmount] = useState('1.0');
+    const debouncedAmount = useDebounce(formattedAmount, 2000);
 
     useEffect(() => {
         const handleClickAway = (e) => {
@@ -28,9 +30,10 @@ const CurrencyExchange = () => {
 
 
     useEffect(() => {
+        console.log('debouncedAmount', debouncedAmount)
         const { from, to } = selectedOption;
-        const fetchResult = async ({ from, to, amount }) => {
-            const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${amount}`;
+        const fetchResult = async ({ from, to, debouncedAmount }) => {
+            const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${debouncedAmount}`;
             const options = {
                 method: 'GET',
                 headers: {
@@ -40,7 +43,6 @@ const CurrencyExchange = () => {
             };
 
             try {
-                console.log('amount', amount);
                 const response = await fetch(url, options);
                 const result = await response.text();
                 dispatch(setResult(result));
@@ -51,10 +53,10 @@ const CurrencyExchange = () => {
                 setError(error);
             }
         };
-        if (from && to && amount !== '' && parseFloat(amount) > 0) {
-            fetchResult({ from, to, amount });
+        if (from && to && debouncedAmount !== '' && parseFloat(debouncedAmount) > 0) {
+            fetchResult({ from, to, debouncedAmount });
         }
-    }, [selectedOption, amount, dispatch]);
+    }, [selectedOption, debouncedAmount, dispatch]);
 
     return (
         <div className={`${styles.wrapper}`}>
@@ -62,14 +64,14 @@ const CurrencyExchange = () => {
             <div className={`${styles['section-container']}`} >
                 <section className={`${styles.section}`}>
                     <div className={`${styles.form}`}>
-                        <CurrencyInput />
+                        <CurrencyInput formattedAmount={formattedAmount} setFormattedAmount={setFormattedAmount} />
                         <Dropdown id="from" />
                         <SwapButton />
                         <Dropdown id="to" />
                     </div>
 
                     <ResetButton />
-                    <Result />
+                    <Result debouncedAmount={debouncedAmount} />
                 </section>
             </div>
 

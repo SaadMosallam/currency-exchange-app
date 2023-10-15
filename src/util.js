@@ -1,14 +1,18 @@
+import { useEffect, useState } from "react";
+
 export const getOppositeLabel = (label) => {
     if (label === 'from') return 'to';
     return 'from'
 }
 
-export const debounce = (func, delay) => {
-    let debounceTimer;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => func.apply(context, args), delay);
-    }
-} 
+export default function useDebounce(value, delay = 500) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+
+        return () => clearTimeout(timeoutId);
+    }, [delay, value]);
+    return debouncedValue;
+};

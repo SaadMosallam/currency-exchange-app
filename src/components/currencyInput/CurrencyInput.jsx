@@ -1,23 +1,17 @@
 
-import { useState } from 'react';
 import styles from './styles.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeAmount } from '@/store/currencySlice';
-import { debounce } from '@/util';
+import { useDispatch } from 'react-redux';
+import { setResult } from '@/store/currencySlice';
 
 const ALLOWED_FRACTION_LENGTH = 1;
 
-
-
-const CurrencyInput = () => {
-    const amount = useSelector(state => state.currency.amount);
-    const [formattedAmount, setFormattedAmount] = useState(amount);
+const CurrencyInput = ({ formattedAmount, setFormattedAmount }) => {
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const value = e.target.value;
         if (/^[0-9]*\.?[0-9]?$/.test(value)) {
-            debounce(function () { console.log('latch'); dispatch(changeAmount(value)); }, 2000);
+            dispatch(setResult(null));
             setFormattedAmount(value);
         }
     };
