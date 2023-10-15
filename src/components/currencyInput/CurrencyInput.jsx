@@ -16,6 +16,13 @@ const CurrencyInput = ({ formattedAmount, setFormattedAmount }) => {
         }
     };
 
+    const valueFormatter = (value) => {
+        if (value === '') {
+            return setFormattedAmount(parseFloat(0).toFixed(ALLOWED_FRACTION_LENGTH));
+        }
+        return (parseFloat(value).toFixed(ALLOWED_FRACTION_LENGTH));
+    }
+
     const handleOnBlur = (e) => {
         const value = e.target.value;
         if (value === '') {
@@ -23,6 +30,8 @@ const CurrencyInput = ({ formattedAmount, setFormattedAmount }) => {
         }
         setFormattedAmount(parseFloat(value).toFixed(ALLOWED_FRACTION_LENGTH));
     }
+
+
 
     return (
         <div className={`${styles.wrapper}`}>
@@ -32,7 +41,7 @@ const CurrencyInput = ({ formattedAmount, setFormattedAmount }) => {
                 name="currency-input"
                 id='currency-input'
                 className={`${styles.currencyInput}`}
-                value={formattedAmount}
+                value={valueFormatter(formattedAmount)}
                 onChange={handleChange}
                 onBlur={handleOnBlur}
             />

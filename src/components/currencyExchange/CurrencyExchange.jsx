@@ -5,7 +5,7 @@ import SwapButton from '../swapButton/SwapButton';
 import ResetButton from '../resetButton/ResetButton';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeDropDown, setError, setResult } from '@/store/currencySlice';
+import { closeDropDown, getResult, setError, setResult } from '@/store/currencySlice';
 import Result from '../result/Result';
 import useDebounce from '@/util';
 
@@ -31,27 +31,9 @@ const CurrencyExchange = () => {
 
     useEffect(() => {
         const { from, to } = selectedOption;
-        const fetchResult = async ({ from, to, debouncedAmount }) => {
-            const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${debouncedAmount}`;
-            const options = {
-                method: 'GET',
-                headers: {
-                    'X-RapidAPI-Key': '9af8210d71msh0adc58de1e15513p12c61ajsn6b967a6e4108',
-                    'X-RapidAPI-Host': 'currency-exchange.p.rapidapi.com'
-                }
-            };
 
-            try {
-                const response = await fetch(url, options);
-                const result = await response.text();
-                dispatch(setResult(result));
-                setError(null);
-            } catch (error) {
-                setError(error);
-            }
-        };
         if (from && to && debouncedAmount !== '' && parseFloat(debouncedAmount) > 0) {
-            fetchResult({ from, to, debouncedAmount });
+            dispatch(getResult({ from, to, debouncedAmount }));
         }
     }, [selectedOption, debouncedAmount, dispatch]);
 

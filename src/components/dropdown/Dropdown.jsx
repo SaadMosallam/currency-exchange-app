@@ -26,6 +26,9 @@ const Dropdown = ({ id }) => {
 
     const handleSelectOption = (e) => {
         e.stopPropagation();
+        if (selectedOption[id] === e.target.innerText.trim()) {
+            return dispatch(closeDropDown());
+        }
         if (selectedOption[getOppositeLabel(id)] !== e.target.innerText.trim()) {
             dispatch(closeDropDown());
             dispatch(selectCurrency({ id, value: e.target.innerText.trim() }))
