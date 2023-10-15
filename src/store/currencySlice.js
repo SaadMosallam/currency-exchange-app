@@ -49,7 +49,7 @@ export const currencySlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload;
         },
-        reset: () => initialState
+        reset: (state) => ({ ...initialState, currenciesList: state.currenciesList })
     },
 })
 
