@@ -1,13 +1,13 @@
-import CurrencyInput from '@/components/currencyInput';
-import Dropdown from '@/components/dropdown';
-import styles from '@/styles/currencyExchange.module.css';
-import SwapButton from './swapButton';
-import ResetButton from './resetButton';
+import CurrencyInput from '@/components/currencyInput/CurrencyInput';
+import Dropdown from '@/components/dropdown/Dropdown';
+import styles from './styles.module.css';
+import SwapButton from '../swapButton/SwapButton';
+import ResetButton from '../resetButton/ResetButton';
 import { currencyContext } from '@/store/currencyContext';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDropDown, setError, setResult } from '@/store/currencySlice';
-import Result from './Result';
+import Result from '../result/Result';
 
 const CurrencyExchange = ({ currenciesList }) => {
     const dispatch = useDispatch();

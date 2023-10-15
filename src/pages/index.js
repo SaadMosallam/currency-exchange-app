@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import CurrencyExchange from '@/components/currencyExchange'
+import CurrencyExchange from '@/components/currencyExchange/CurrencyExchange'
 
 const inter = Inter({ subsets: ['latin'] })
 

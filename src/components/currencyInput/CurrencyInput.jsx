@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import styles from '@/styles/currencyInput.module.css';
+import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAmount } from '@/store/currencySlice';
 import { debounce } from '@/util';

@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import styles from '@/styles/dropdown.module.css';
+import styles from './styles.module.css';
 import Image from "next/image";
 import downSvg from '@/assets/images/arrowDown.svg';
 import { currencyContext } from "@/store/currencyContext";

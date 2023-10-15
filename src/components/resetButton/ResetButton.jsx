@@ -1,5 +1,5 @@
 import { reset } from '@/store/currencySlice';
-import styles from '@/styles/resetButton.module.css';
+import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ResetButton = () => {
