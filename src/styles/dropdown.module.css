@@ -11,6 +11,7 @@
 }
 
 .menu-button {
+  position: relative;
   cursor: pointer;
   height: 40px;
   background: #fff;
@@ -54,6 +55,13 @@
   color: #333;
   cursor: pointer;
   transition: ease-in 0.3s;
+}
+
+.menu-item.disabled,
+.menu-item.disabled:hover {
+  color: #abb3bd;
+  background-color: #fff;
+  cursor: auto;
 }
 
 .menu-item:hover {

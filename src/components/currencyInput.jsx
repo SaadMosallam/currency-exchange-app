@@ -1,34 +1,44 @@
 
 import { useState } from 'react';
 import styles from '@/styles/currencyInput.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAmount } from '@/store/currencySlice';
+import { debounce } from '@/util';
 
 const ALLOWED_FRACTION_LENGTH = 1;
 
+
+
 const CurrencyInput = () => {
-    const [value, setValue] = useState('1.0');
+    const amount = useSelector(state => state.currency.amount);
+    const [formattedAmount, setFormattedAmount] = useState(amount);
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
-        if (/^[0-9]*\.?[0-9]?$/.test(e.target.value)) {
-            setValue(e.target.value);
+        const value = e.target.value;
+        if (/^[0-9]*\.?[0-9]?$/.test(value)) {
+            debounce(function () { console.log('latch'); dispatch(changeAmount(value)); }, 2000);
+            setFormattedAmount(value);
         }
     };
 
     const handleOnBlur = (e) => {
-        if (e.target.value === '') {
-            return setValue(parseFloat(0).toFixed(ALLOWED_FRACTION_LENGTH));
+        const value = e.target.value;
+        if (value === '') {
+            return setFormattedAmount(parseFloat(0).toFixed(ALLOWED_FRACTION_LENGTH));
         }
-        setValue(parseFloat(e.target.value).toFixed(ALLOWED_FRACTION_LENGTH));
+        setFormattedAmount(parseFloat(value).toFixed(ALLOWED_FRACTION_LENGTH));
     }
 
     return (
         <div className={`${styles.wrapper}`}>
-            <label className={`${styles.currencyLabel}`} for="currency-input">Amount</label>
+            <label className={`${styles.currencyLabel}`} htmlFor="currency-input">Amount</label>
             <input
                 type="text"
                 name="currency-input"
                 id='currency-input'
                 className={`${styles.currencyInput}`}
-                value={value}
+                value={formattedAmount}
                 onChange={handleChange}
                 onBlur={handleOnBlur}
             />
