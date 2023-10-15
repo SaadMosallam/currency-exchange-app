@@ -1,9 +1,7 @@
 
-import { useContext } from "react";
 import styles from './styles.module.css';
 import Image from "next/image";
 import downSvg from '@/assets/images/arrowDown.svg';
-import { currencyContext } from "@/store/currencyContext";
 import { useDispatch, useSelector } from "react-redux";
 import { openDropDown, closeDropDown, selectCurrency } from "@/store/currencySlice";
 import { getOppositeLabel } from "@/util";
@@ -13,7 +11,7 @@ const PLACEHOLDER = 'Currency';
 
 const Dropdown = ({ id }) => {
     const dispatch = useDispatch();
-    const currenciesList = useContext(currencyContext);
+    const currenciesList = useSelector(state => state.currency.currenciesList);
     const isOpen = useSelector(state => state.currency.isDropdownOpen) === id;
     const selectedOption = (useSelector(state => state.currency.value));
 

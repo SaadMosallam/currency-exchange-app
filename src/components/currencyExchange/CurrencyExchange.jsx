@@ -3,13 +3,12 @@ import Dropdown from '@/components/dropdown/Dropdown';
 import styles from './styles.module.css';
 import SwapButton from '../swapButton/SwapButton';
 import ResetButton from '../resetButton/ResetButton';
-import { currencyContext } from '@/store/currencyContext';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDropDown, setError, setResult } from '@/store/currencySlice';
 import Result from '../result/Result';
 
-const CurrencyExchange = ({ currenciesList }) => {
+const CurrencyExchange = () => {
     const dispatch = useDispatch();
     const selectedOption = useSelector(state => state.currency.value);
     const amount = useSelector(state => state.currency.amount);
@@ -58,25 +57,23 @@ const CurrencyExchange = ({ currenciesList }) => {
     }, [selectedOption, amount, dispatch]);
 
     return (
-        <currencyContext.Provider value={currenciesList}>
-            <div className={`${styles.wrapper}`}>
-                <h1 className={`${styles.header}`}>Money Exchange</h1>
-                <div className={`${styles['section-container']}`} >
-                    <section className={`${styles.section}`}>
-                        <div className={`${styles.form}`}>
-                            <CurrencyInput />
-                            <Dropdown id="from" />
-                            <SwapButton />
-                            <Dropdown id="to" />
-                        </div>
+        <div className={`${styles.wrapper}`}>
+            <h1 className={`${styles.header}`}>Money Exchange</h1>
+            <div className={`${styles['section-container']}`} >
+                <section className={`${styles.section}`}>
+                    <div className={`${styles.form}`}>
+                        <CurrencyInput />
+                        <Dropdown id="from" />
+                        <SwapButton />
+                        <Dropdown id="to" />
+                    </div>
 
-                        <ResetButton />
-                        <Result />
-                    </section>
-                </div>
-
+                    <ResetButton />
+                    <Result />
+                </section>
             </div>
-        </currencyContext.Provider>
+
+        </div>
     );
 };
 

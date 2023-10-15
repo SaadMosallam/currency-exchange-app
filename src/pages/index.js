@@ -1,12 +1,17 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import CurrencyExchange from '@/components/currencyExchange/CurrencyExchange'
+import { useDispatch } from 'react-redux'
+import { setCurrenciesList } from '@/store/currencySlice'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ currenciesList, error }) {
+  const dispatch = useDispatch();
+  if (currenciesList.length) dispatch(setCurrenciesList(currenciesList))
 
   return (
+
     <>
       <Head>
         <title>Money Exchange</title>
@@ -20,7 +25,7 @@ export default function Home({ currenciesList, error }) {
         }
 
         {
-          currenciesList ? <CurrencyExchange currenciesList={currenciesList} /> : null
+          currenciesList ? <CurrencyExchange /> : null
         }
       </main>
     </>
