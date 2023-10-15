@@ -40,4 +40,14 @@
   .form {
     flex-direction: column;
   }
+  .section {
+    text-align: center;
+  }
+  .section-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .header {
+    padding-top: 50px;
+  }
 }

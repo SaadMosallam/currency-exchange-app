@@ -1,5 +1,5 @@
-export const fetchResult = async ({ from, to, debouncedAmount }) => {
-    const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${debouncedAmount}`;
+export const fetchResult = async ({ from, to, amount }) => {
+    const url = `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=${amount}`;
     const options = {
         method: 'GET',
         headers: {
@@ -8,11 +8,7 @@ export const fetchResult = async ({ from, to, debouncedAmount }) => {
         }
     };
 
-    try {
-        const response = await fetch(url, options);
-        const result = await response.text();
-        return result;
-    } catch (error) {
-        return error;
-    }
+    const response = await fetch(url, options);
+    const result = await response.text();
+    return result;
 };

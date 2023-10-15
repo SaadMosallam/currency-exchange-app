@@ -33,7 +33,7 @@ const CurrencyExchange = () => {
         const { from, to } = selectedOption;
 
         if (from && to && debouncedAmount !== '' && parseFloat(debouncedAmount) > 0) {
-            dispatch(getResult({ from, to, debouncedAmount }));
+            dispatch(getResult({ from, to, amount: debouncedAmount }));
         }
     }, [selectedOption, debouncedAmount, dispatch]);
 

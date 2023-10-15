@@ -23,7 +23,7 @@ const Dropdown = ({ id }) => {
     const handleSelectOption = (e) => {
         e.stopPropagation();
         if (selectedOption[id] === e.target.innerText.trim()) {
-            return dispatch(closeDropDown());
+            return dispatch(setIsDropdownOpen(null));
         }
         if (selectedOption[getOppositeLabel(id)] !== e.target.innerText.trim()) {
             dispatch(setIsDropdownOpen(null));
@@ -40,16 +40,14 @@ const Dropdown = ({ id }) => {
                 {selectedOption[id] || PLACEHOLDER}
                 <Image width={15} height={15} src={downSvg} alt="arrow down" />
                 {
-                    isOpen && (
-                        <ul data-dropdown className={`${styles.menu} ${styles.active}`}>{
-                            currenciesList.map(currency => (
-                                <li key={currency} className={`${styles['menu-item']} ${selectedOption[getOppositeLabel(id)] === currency ? styles.disabled : null}`} onClick={handleSelectOption}>
-                                    {currency}
-                                </li>
-                            ))
-
-                        }</ul>
-                    )
+                    <ul data-dropdown className={`${styles.menu} ${isOpen && styles.active}`}>{
+                        currenciesList.map(currency => (
+                            <li key={currency} className={`${styles['menu-item']} ${selectedOption[getOppositeLabel(id)] === currency ? styles.disabled : null}`} onClick={handleSelectOption}>
+                                {currency}
+                            </li>
+                        ))
+                    }
+                    </ul>
                 }
             </button>
         </div>

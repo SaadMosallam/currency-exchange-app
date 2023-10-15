@@ -20,13 +20,8 @@ export default function Home({ currenciesList, error }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {
-          error ? <p>Cannot retrieve currencies list</p> : null
-        }
-
-        {
-          currenciesList ? <CurrencyExchange /> : null
-        }
+        {error ? <p>Cannot retrieve currencies list</p> : null}
+        {currenciesList ? <CurrencyExchange /> : null}
       </main>
     </>
   )

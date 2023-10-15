@@ -1,9 +1,19 @@
 import { fetchResult } from '@/API/currencyAPI';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const getResult = createAsyncThunk('currency/fetchResult', async (args) => {
-    const response = await fetchResult(args);
-    return response
+export const getResult = createAsyncThunk('currency/fetchResult', async (args, { dispatch, rejectWithValue, fulfillWithValue }) => {
+    dispatch(setError(null));
+    try {
+        const response = await fetchResult(args);
+        return fulfillWithValue(response)
+    } catch (error) {
+        if (!err.response) {
+            throw err
+        }
+
+        return rejectWithValue(err.response.data)
+    }
+
 })
 
 const initialState = {
