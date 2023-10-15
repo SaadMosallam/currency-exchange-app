@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import CurrencyExchange from '@/components/currencyExchange/CurrencyExchange'
-import { useDispatch } from 'react-redux';
-import { setCurrenciesList } from '@/store/currencySlice';
-import { useRouter } from 'next/router';
+import Head from "next/head";
+import CurrencyExchange from "@/components/currencyExchange/CurrencyExchange";
+import { useDispatch } from "react-redux";
+import { setCurrenciesList } from "@/store/currencySlice";
+import { useRouter } from "next/router";
 
 export default function Home({ currenciesList, error }) {
   const dispatch = useDispatch();
@@ -13,7 +13,6 @@ export default function Home({ currenciesList, error }) {
   }
 
   return (
-
     <>
       <Head>
         <title>Money Exchange</title>
@@ -22,26 +21,32 @@ export default function Home({ currenciesList, error }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {error ? <div>
-          <p>Something went wrong, please try again later</p>
-          <button onClick={() => {
-            router.reload();
-          }}>Reload</button>
-        </div> : null}
+        {error ? (
+          <div>
+            <p>Something went wrong, please try again later</p>
+            <button
+              onClick={() => {
+                router.reload();
+              }}
+            >
+              Reload
+            </button>
+          </div>
+        ) : null}
         {currenciesList ? <CurrencyExchange /> : null}
       </main>
     </>
-  )
-};
+  );
+}
 
 export async function getServerSideProps() {
-  const url = 'https://currency-exchange.p.rapidapi.com/listquotes';
+  const url = "https://currency-exchange.p.rapidapi.com/listquotes";
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'X-RapidAPI-Key': '9af8210d71msh0adc58de1e15513p12c61ajsn6b967a6e4108',
-      'X-RapidAPI-Host': 'currency-exchange.p.rapidapi.com'
-    }
+      "X-RapidAPI-Key": "9af8210d71msh0adc58de1e15513p12c61ajsn6b967a6e4108",
+      "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
+    },
   };
 
   try {
@@ -49,14 +54,14 @@ export async function getServerSideProps() {
     const result = await response.json();
     return {
       props: {
-        currenciesList: result
-      }
-    }
+        currenciesList: result,
+      },
+    };
   } catch (error) {
     return {
       props: {
-        error: true
-      }
+        error: true,
+      },
     };
   }
-};
+}
