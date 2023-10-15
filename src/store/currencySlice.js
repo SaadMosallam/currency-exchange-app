@@ -5,7 +5,6 @@ const initialState = {
         from: null,
         to: null,
     },
-    amount: '1.0',
     result: null,
     isDropdownOpen: null,
     error: null,
@@ -17,10 +16,6 @@ export const currencySlice = createSlice({
     name: 'currency',
     initialState,
     reducers: {
-        changeAmount: (state, action) => {
-            state.amount = action.payload;
-            state.result = null;
-        },
         setCurrenciesList: (state, action) => {
             state.currenciesList = action.payload;
         },
@@ -54,6 +49,6 @@ export const currencySlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { changeAmount, openDropDown, closeDropDown, selectCurrency, swapCurrencies, setError, reset, setResult, setCurrenciesList } = currencySlice.actions
+export const { openDropDown, closeDropDown, selectCurrency, swapCurrencies, setError, reset, setResult, setCurrenciesList } = currencySlice.actions
 
 export default currencySlice.reducer
