@@ -1,4 +1,4 @@
-import React from 'react'
+import styles from './styles.module.css';
 import { useSelector } from 'react-redux';
 
 function Result() {
@@ -9,7 +9,7 @@ function Result() {
 
     if (error) return <p>Error loading data</p>
 
-    if (result) return <p>{parseFloat(amount)} {selectedOption.from} equals {result} {selectedOption.to}</p>
+    if (result) return <p className={styles.result}>{parseFloat(amount)} {selectedOption.from} equals {result} {selectedOption.to}</p>
 }
 
 export default Result;
