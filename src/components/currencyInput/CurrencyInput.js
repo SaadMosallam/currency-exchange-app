@@ -1,7 +1,6 @@
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setAmount, setFormattedAmount } from "@/store/currencySlice";
-import { useState, useEffect } from "react";
 import { valueFormatter } from "@/util";
 import React from "react";
 

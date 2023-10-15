@@ -18,7 +18,11 @@ const ResetButton = () => {
 
   return (
     isDisplayed && (
-      <button className={`${styles["reset-button"]}`} onClick={handleClick}>
+      <button
+        data-testid="reset-button"
+        className={`${styles["reset-button"]}`}
+        onClick={handleClick}
+      >
         Reset
       </button>
     )

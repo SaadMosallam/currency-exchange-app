@@ -10,10 +10,12 @@ function Result({ debouncedAmount }) {
 
   if (error) return <p className={styles.error}>Error loading data</p>;
 
-  if (isLoading) return <div className={styles.loader}></div>;
+  if (isLoading)
+    return <div data-testid="loading" className={styles.loader}></div>;
+
   if (result && debouncedAmount !== "")
     return (
-      <p className={styles.result}>
+      <p data-testid="result" className={styles.result}>
         {parseFloat(debouncedAmount)} {selectedOption.from} equals {result}{" "}
         {selectedOption.to}
       </p>

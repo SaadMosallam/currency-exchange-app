@@ -12,7 +12,11 @@ const SwapButton = () => {
     dispatch(swapCurrencies());
   };
   return (
-    <button className={`${styles["swap-button"]}`} onClick={handleClick}>
+    <button
+      data-testid="swap-button"
+      className={`${styles["swap-button"]}`}
+      onClick={handleClick}
+    >
       <Image width={15} height={15} src={arrowSwap} alt="swap button" />
     </button>
   );
